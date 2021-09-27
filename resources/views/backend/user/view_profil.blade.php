@@ -42,9 +42,8 @@
             <button type="submit" class="btn btn-secondary">Login</button>
           </div>
         </form>
-        <!-- END Form Inline - Alternative Style -->
+        <!-- END Form Inline  ds- Alternative Style -->
       </div>
     </div>
 </div>
 @endsection
-
