@@ -19,7 +19,7 @@
     }
 
     .bt-position {
-      display: flex;
+      display: flex; 
       justify-content: flex-end;
   }
 
