@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeeSalaryLogsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateEmployeeSalaryLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_salary_logs', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->integer('employee_id');
-            $table->string('date');
-            $table->double('salary');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateEmployeeSalaryLogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_salary_logs');
+        Schema::dropIfExists('categories');
     }
 }

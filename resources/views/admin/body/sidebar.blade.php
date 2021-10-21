@@ -69,6 +69,13 @@ $route = Route::current()->getName();
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
+                            <a class="nav-main-link  {{ $route == 'employee.designation.view' ? 'active' : '' }}
+                            {{ $route == 'employee.designation.add' ? 'active' : '' }}"
+                             href="{{ route('employee.designation.view') }}">
+                                <span class="nav-main-link-name">Fonction</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
                             <a class="nav-main-link  {{ $route == 'employee.view' ? 'active' : '' }}
                             {{ $route == 'employee.add' ? 'active' : '' }}"
                              href="{{ route('employee.registration.view') }}">
@@ -76,9 +83,48 @@ $route = Route::current()->getName();
                             </a>
                         </li>
                         <li class="nav-main-item">
+                            <a class="nav-main-link {{ $route == 'pay.salary.view' ? 'active' : '' }}" 
+                            href="{{ route('pay.salary.view') }}">
+                                <span class="nav-main-link-name">Payer Personnel</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
                             <a class="nav-main-link " 
                             href="{{ route('account.salary.view') }}">
                                 <span class="nav-main-link-name">Personel Payé</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
+                            <a class="nav-main-link  {{ $route == 'employee.leave.view' ? 'active' : '' }}" 
+                            href="{{ route('employee.leave.view') }}">
+                                <span class="nav-main-link-name">Rupture de contrat</span>
+                            </a>
+                        </li>
+                      
+                    </ul>
+                </li>
+
+                <li class="nav-main-heading">Equipements</li>
+                <li class="nav-main-item {{ $prefix == '/equipements' ? 'open' : '' }}">
+                    <a class="nav-main-link nav-main-link-submenu" 
+                    data-toggle="submenu" aria-haspopup="true"
+                        aria-expanded="true" href="#employee">
+                        <i class="nav-main-link-icon fa fa-border-all"></i>
+                        <span class="nav-main-link-name">Gestion Equipeme...</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link  {{ $route == 'equip.registration.view' ? 'active' : '' }}
+                            {{ $route == 'equipement.add' ? 'active' : '' }}"
+                             href="{{ route('equip.registration.view') }}">
+                                <span class="nav-main-link-name">Equipements Récupéra...</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link " 
+                            href="{{ route('equipement.registration.view') }}">
+                                <span class="nav-main-link-name">Equipements Non Récu...</span>
                             </a>
                         </li>
                       
@@ -104,6 +150,45 @@ $route = Route::current()->getName();
                         </li>
                     </ul>
                 </li>
+                <li class="nav-main-item">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                        aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-vector-square"></i>
+                        <span class="nav-main-link-name">Layout</span>
+                    </a>
+                    
+                </li>
+
+
+                <li class="nav-main-heading">Produit/Services</li>
+                <li class="nav-main-item {{ $prefix == '/equipements' ? 'open' : '' }}">
+                    <a class="nav-main-link nav-main-link-submenu" 
+                    data-toggle="submenu" aria-haspopup="true"
+                        aria-expanded="true" href="#employee">
+                        <i class="nav-main-link-icon fa fa-border-all"></i>
+                        <span class="nav-main-link-name">Produits</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link  {{ $route == 'category.product.view' ? 'active' : '' }}
+                            {{ $route == 'category.product.add' ? 'active' : '' }}"
+                             href="{{ route('category.product.view') }}">
+                                <span class="nav-main-link-name">Categories Produit</span>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-main-item">
+                            <a class="nav-main-link  {{ $route == 'product.view' ? 'active' : '' }}
+                            {{ $route == 'product.view' ? 'active' : '' }}"
+                             href="{{ route('product.view') }}">
+                                <span class="nav-main-link-name">Produits</span>
+                            </a>
+                        </li>
+                       
+                      
+                    </ul>
+                </li>
+              
                 <li class="nav-main-item">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                         aria-expanded="false" href="#">

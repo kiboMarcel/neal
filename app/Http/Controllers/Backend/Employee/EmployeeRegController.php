@@ -7,28 +7,35 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Models\EmployeeSalaryLog;
+use App\Models\Designation;
 
+use PDF;
 use DB;
 
 class EmployeeRegController extends Controller
 {
     //
     public function ViewEmployee(){
-        $data['allData'] = User::where('usertype', 'Employee')->orderBy('name')->cursorPaginate(15);
-        $data['count'] = User::where('usertype', 'Employee')->count();
+        $data['allData'] = User::where('usertype', 'Employee')->with('designation')->
+        where('status', 1)->orderBy('name')->get();
+        
+        $data['count'] = User::where('usertype', 'Employee')->where('status', 1)->count();
+
+        $data['designations'] = Designation::all();
+
         return view('backend.employee.employee_reg.view_emp', $data);
     }
 
     public function EmployeeAdd(){
-        return view('backend.employee.employee_reg.add_emp');
+        $data['designation'] = Designation::all();
+        return view('backend.employee.employee_reg.add_emp', $data);
     }
 
 
     public function EmployeeStore(Request $request){
         
         DB::transaction(function () use ($request) {
-            $checkYear = date('Ym', strtotime($request->join_date));
-            //dd($checkYear);
+            
             $employee = User::where('usertype', 'employee')->orderBy('id', 'DESC')->first();
 
           /*   if($employee == null){
@@ -63,24 +70,13 @@ class EmployeeRegController extends Controller
             $user->place_of_birth = $request->place_of_birth;
             $user->join_date = date('Y-m-d', strtotime( $request->join_date) );
             $user->salary = $request->salary;
+            $user->designation_id = $request->designation_id;
             $user->person_to_contact = $request->person_to_contact;
             $user->awareness1 = $request->awareness1;
             $user->awareness2 = $request->awareness2;
             $user->awareness3 = $request->awareness3;
             
             $user->save();
-
-
-
-            $employee_salary =  new EmployeeSalaryLog();
-            $employee_salary->employee_id = $user->id;
-            $employee_salary->effected_salary = date('Y-m-d', strtotime( $request->join_date) );
-            $employee_salary->previous_salary = $request->salary;
-            $employee_salary->present_salary = $request->salary;
-            $employee_salary->increment_salary = '0';
-
-            $employee_salary->save();
-
            
         });
 
@@ -118,16 +114,35 @@ class EmployeeRegController extends Controller
     public function EmployeeDetail(Request $request ,$id){
        
         $data['details'] =  User::find($id);
-        /* $data['details'] =  User::with(['student'])->
-        where('student_id', $id)->first(); */
-
-
-        //SCHOOL DATA
-        $data['school_info'] =  schoolInfo::where('id', 1)->first();
-
-        $pdf = PDF::loadView('backend.employee.employee_reg.employee_details_pdf', $data);
+        $data['details'] =  User::where('id', $id)->with(['designation'])->first();
+        //dd($data['details']);
+        $pdf = PDF::loadView('backend.employee.employee_reg.details_employee_pdf', $data);
         $pdf->SetProtection(['copy', 'print'], '', 'pass');
         return $pdf->stream('document.pdf');
+
+    }
+
+
+    public function EmployeePromotion(Request $request ,$id){
+       
+        $data['details'] =  User::where('id', $id)->with('designation')->first();
+
+        $data['designations'] = Designation::all();
+        
+        return view('backend.employee.employee_reg.promotion_emp', $data);
+
+    }
+
+    public function EmployeePromotionStore(Request $request, $id){
+       
+        $promotionStore =  User::find($id);
+
+        $promotionStore->designation_id = $request->designation_id;
+        $promotionStore->salary = $request->salary;
+
+        $promotionStore->save();
+
+       return redirect()-> route('employee.registration.view')->with('successUpdate', '');
 
     }
 }

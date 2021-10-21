@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('awareness1')->nullable();
             $table->string('awareness2')->nullable();
             $table->string('awareness3')->nullable();
+            $table->string('designation_id')->nullable();
             $table->rememberToken();
             $table->tinyInteger('status')->default(1)->commment('0=inactive, 1=active');
             $table->foreignId('current_team_id')->nullable();

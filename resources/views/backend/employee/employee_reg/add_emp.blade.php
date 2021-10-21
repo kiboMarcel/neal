@@ -1,11 +1,11 @@
 @extends('admin.admin_master')
 
 <style>
-    .row{
+    .row {
         justify-content: center;
     }
-    
-  .head {
+
+    .head {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -19,9 +19,9 @@
     }
 
     .bt-position {
-      display: flex; 
-      justify-content: flex-end;
-  }
+        display: flex;
+        justify-content: flex-end;
+    }
 
 </style>
 
@@ -33,94 +33,84 @@
 
             <div class="col-lg-10">
                 <!-- Form Grid -->
-                <form  method="post" action=" {{ route('employee.store') }} " enctype="multipart/form-data">
+                <form method="post" action=" {{ route('employee.store') }} " enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-4">
                         <div class="col-4">
                             <label class="form-label" for="name">Nom Prénoms</label>
-                            <input type="text" class="form-control" id="name" required name="name"
-                               >
+                            <input type="text" class="form-control" id="name" required name="name">
                         </div>
                         <div class="col-4">
                             <label class="form-label" for="mobile">Numéros</label>
-                            <input type="text" class="form-control" id="mobile" required name="mobile"
-                               >
+                            <input type="text" class="form-control" id="mobile" required name="mobile">
                         </div>
                         <div class="col-4">
                             <label class="form-label" for="email">Date de Naissance</label>
-                            <input type="date" class="form-control" required id="date_of_birth" 
-                            name="date_of_birth">
+                            <input type="date" class="form-control" required id="date_of_birth" name="date_of_birth">
                         </div>
                     </div>
 
                     <div class="row mb-4">
                         <div class="col-4">
                             <label class="form-label" for="place_of_birth">Lieu de naissance</label>
-                            <input type="text" class="form-control" id="place_of_birth" required name="place_of_birth"
-                            >
+                            <input type="text" class="form-control" id="place_of_birth" required name="place_of_birth">
                         </div>
                         <div class="col-4">
                             <label class="form-label" for="person_to_contact">Personne à prévenir</label>
-                            <input type="text" class="form-control" id="person_to_contact" required name="person_to_contact"
-                            >
+                            <input type="text" class="form-control" id="person_to_contact" required
+                                name="person_to_contact">
                         </div>
                         <div class="col-4">
                             <label class="form-label" for="gender">Genre</label>
-                            <select class="js-select2 form-select" name="gender" id="example-select2" required name="example-select2" style="width: 100%;" data-placeholder="Choose one..">
-                              <option disabled  selected>Selectionez le sexe</option>
-                              <option value="Masculin" >Masculin</option>
-                              <option value="Feminin">Feminin</option>
-                              
+                            <select class="js-select2 form-select" name="gender" id="example-select2" required
+                                style="width: 100%;">
+                                <option disabled selected>Selectionez le sexe</option>
+                                <option value="Masculin">Masculin</option>
+                                <option value="Feminin">Feminin</option>
+
                             </select>
                         </div>
-                     
+
                     </div>
                     <div class="row mb-4">
-                      
+
                         <div class="col-4">
                             <label class="form-label" for="awareness1">Connaissance N1</label>
-                            <input type="text" class="form-control" required
-                             id="awareness1" name="awareness1"
-                           >
+                            <input type="text" class="form-control" required id="awareness1" name="awareness1">
                         </div>
                         <div class="col-4">
                             <label class="form-label" for="awareness2">Connaissance N2</label>
-                            <input type="text" class="form-control" required
-                             id="awareness2" name="awareness2"
-                            >
+                            <input type="text" class="form-control" required id="awareness2" name="awareness2">
                         </div>
                         <div class="col-4">
                             <label class="form-label" for="awareness3">Connaissance N3</label>
-                            <input type="text" class="form-control" required
-                             id="awareness3" name="awareness3"
-                            >
+                            <input type="text" class="form-control" required id="awareness3" name="awareness3">
                         </div>
-                      
+
                     </div>
                     <div class="row mb-4">
-                       
+
                         <div class="col-4">
                             <label class="form-label" for="join_date">Date début Service </label>
-                            <input type="date" class="form-control"required id="join_date" name="join_date">
+                            <input type="date" class="form-control" required id="join_date" name="join_date">
                         </div>
                         <div class="col-4">
                             <label class="form-label" for="salary">Salaire</label>
-                            <input type="text" class="form-control" required id="salary" name="salary"
-                            >
+                            <input type="text" class="form-control" required id="salary" name="salary">
                         </div>
                         <div class="col-4">
                         </div>
-                      
+
                     </div>
-                
+
 
                     <div class="mb-4 bt-position">
-                      <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
                     </div>
                 </form>
                 <!-- END Form Grid -->
             </div>
         </div>
-        
+
     </div>
 @endsection

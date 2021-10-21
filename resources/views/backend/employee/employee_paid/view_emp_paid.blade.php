@@ -23,35 +23,31 @@
         
         <div class="table-responsive">
             <div class="head">
-                <h3>Employés Payé  </h3>
-                <a href=" {{ route('employee.add') }} " class="btn btn-primary button mb-2">Ajouter</a>
+              <h2 class="content-heading">Employés Payé </h2>
             </div>
             <table class="table table-bordered table-striped table-vcenter">
               <thead>
                 <tr>
                  
-                  <th style="width: 30%;">Nom Prénoms</th>
-                  <th >Numéro </th>
-                  <th style="width: 15%;">Salaire</th>
-                  <th style="width: 15%;"> Mois/Année</th>
+                  <th style="width: 30%;">Date</th>
+                  <th style="width: 30%;">Actions</th>
                 </tr>
               </thead>
 
               <tbody>
-                @foreach ($allData as $key => $employee)
+                @foreach ($allData as $key => $paid_emp)
                 <tr>
-                  <td class="fw-semibold">
-                   
-                  </td>
-
-                  <td>{{$employee->mobile}} </em></td>
-
-                 <td>
-                    <span class="badge bg-success"> </span>
-                  </td>
-
+                  <td class="fw-semibold"> {{  date('m-Y', strtotime($paid_emp->date))  }}  </td>
+                
                   <td>
-                    <span> </span>
+                    <div class="btn-group">
+                     
+                      <a href=" {{ route('account.salary.detail', $paid_emp->date) }} " type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip"
+                          title="Detail">
+                          <i class="far fa-2x fa-file-pdf"></i>
+                      </a>
+                    
+                  </div>
                   </td>
                  
                 

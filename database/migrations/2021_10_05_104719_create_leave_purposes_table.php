@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePayedEmployeesTable extends Migration
+class CreateLeavePurposesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreatePayedEmployeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('payed_employees', function (Blueprint $table) {
+        Schema::create('leave_purposes', function (Blueprint $table) {
             $table->id();
-            $table->integer('employee_id');
-            $table->string('date')->nullable();
-            $table->double('amount')->nullable();
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreatePayedEmployeesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payed_employees');
+        Schema::dropIfExists('leave_purposes');
     }
 }

@@ -44,7 +44,7 @@
 @section('admin')
 
     <div class="content">
-        <h2 class="content-heading">Ajouter Employé Payé</h2>
+        <h2 class="content-heading">Payé Employé</h2>
        
         <div class="row push">
             <div class="col-lg-10">
@@ -78,7 +78,7 @@
                     {{-- SPINNER LOAD END --}} 
                         <div id="DocumentResults">
                             <script id="document-template" type="text/x-handlebars-template">
-                                <form action=" {{ route('account.salary.store') }} " method="POST">
+                               
                                     @csrf
                                     <table class="table table-bordered  table-hover">
                                         @{{{ h5source }}}
@@ -97,10 +97,7 @@
                                         </tbody>
                                     </table>
                                     
-                                    <input type="submit" class="btn btn-outline-info save mb-2 " 
-                                    value="Enregistrer" id="">
-                 
-                                </form>
+                                   
                             </script>
                         </div>
                     </div>
@@ -110,6 +107,36 @@
             </div>
         </div>
 
+
+         <!-- Pop In Block Modal -->
+                        <div class="modal fade" id="modal-block-popin" tabindex="-1" role="dialog"
+                            aria-labelledby="modal-block-popin" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-popin" role="document">
+                                <div class="modal-content">
+                                    <div class="block block-rounded block-themed block-transparent mb-0">
+                                        <div class="block-header bg-primary-dark">
+                                            <h3 class="block-title">Ete Vous sur</h3>
+                                            <div class="block-options">
+                                                <button type="button" class="btn-block-option" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i class="fa fa-fw fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="block-content">
+                                            <p>Etes Vous Sur ?</p>
+                                        </div>
+                                        <div class="block-content block-content-full text-end bg-body">
+                                            <button type="button" class="btn btn-sm btn-alt-secondary"
+                                                data-bs-dismiss="modal">Annuler</button>
+                                            <a type="button" href=""
+                                                class="btn btn-sm btn-primary">Oui</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Pop In Block Modal -->
         
     </div>
 
@@ -126,7 +153,7 @@
 
         function feetch(date){
             $.ajax({
-                url: "{{ route('account.salary.getemployee') }}",
+                url: "{{ route('pay.salary.getemployee') }}",
                 type: "get",
                 data: {'date':date,},
                 beforeSend: function() {  

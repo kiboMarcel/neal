@@ -33,8 +33,14 @@
 
         <div class="table-responsive">
             <div class="head">
-                <h3>Employés ( {{ $count }} ) </h3>
-                <a href="  " class="btn btn-primary button mb-2" data-bs-toggle="modal"
+                <h2 class="content-heading">Employés ( {{ $count }} )</h2>
+
+                <a href=" "   class="btn btn-alt-primary me-1 mb-3  {{ $count==0? 'd-none': '' }} " 
+                    title="Imprimer liste">
+                    <i class="fa fa-fw fa-print"></i>
+                </a>
+
+                <a href="  " class="btn btn-hero btn-info me-1 mb-3" data-bs-toggle="modal"
                     data-bs-target="#modal-block-popin">Ajouter</a>
             </div>
             <table class="table table-bordered table-striped table-vcenter">
@@ -43,6 +49,7 @@
 
                         <th style="width: 30%;">Nom Prénoms</th>
                         <th>Numéro </th>
+                        <th style="width: 15%;">Fonction</th>
                         <th style="width: 15%;">Salaire</th>
                         <th style="width: 15%;">Début Service</th>
                         <th class="text-center" style="width: 100px;">Actions</th>
@@ -57,6 +64,8 @@
                             </td>
 
                             <td>{{ $employee->mobile }} </em></td>
+
+                            <td>{{ $employee['designation']->name }} </em></td>
 
                             <td>
                                 <span class="badge bg-success"> {{ number_format($employee->salary, 0, ',', ' ') }} cfa
@@ -73,14 +82,15 @@
                                         class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit">
                                         <i class="far fa-2x fa-edit"></i>
                                     </a>
-                                    <a type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip"
+                                    <a href=" {{ route('employee.detail.pdf', $employee->id) }} " type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip"
                                         title="Detail">
                                         <i class="far fa-2x fa-file-pdf"></i>
                                     </a>
-                                    <a type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip"
-                                        title="Rompre Contrat">
-                                        <i class="fa fa-2x fa-biohazard"  color="red"></i>
+                                    <a href=" {{ route('employee.promotion', $employee->id) }} " type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip"
+                                        title="Mutation de Fonction">
+                                        <i class="fa fa-2x fa-circle-notch"  color="red"></i>
                                     </a>
+                                 
                                 </div>
                             </td>
                         </tr>
@@ -100,7 +110,7 @@
                 <div class="modal-content">
                     <div class="block block-rounded block-themed block-transparent mb-0">
                         <div class="block-header bg-primary-dark">
-                            <h3 class="block-title">Modal Title</h3>
+                            <h3 class="block-title">Ajouter Personel</h3>
                             <div class="block-options">
                                 <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
                                     <i class="fa fa-fw fa-times"></i>
@@ -146,9 +156,8 @@
                                             <div class="col-4">
                                                 <label class="form-label" for="gender">Genre</label>
                                                 <select class="js-select2 form-select" name="gender" id="example-select2"
-                                                    required name="example-select2" style="width: 100%;"
-                                                    data-placeholder="Choose one..">
-                                                    <option disabled selected>Selectionez le sexe</option>
+                                                    required>
+                                                    <option value="" selected="" disabled="">Selectionez le sexe</option>
                                                     <option value="Masculin">Masculin</option>
                                                     <option value="Feminin">Feminin</option>
 
@@ -183,12 +192,22 @@
                                                     name="join_date">
                                             </div>
                                             <div class="col-4">
-                                                <label class="form-label" for="salary">Salaire</label>
-                                                <input type="text" class="form-control" required id="salary"
-                                                    name="salary">
+                                                <label class="form-label" for="salary">Fonction</label>
+                                                <select class="js-select2 form-select" name="designation_id" id="example-select2"
+                                                    required  style="width: 100%;">
+                                                    <option value="" selected="" disabled="">Selectionez la fonction</option>
+                                                    @foreach ($designations as $designation)
+                                                    <option value="{{$designation->id}}"> {{ $designation->name }} </option>
+                                                    @endforeach
+                                                    
+                                                </select>
                                             </div>
                                             <div class="col-4">
+                                                <label class="form-label" for="salary">Salaire</label>
+                                                <input type="number" class="form-control" required id="salary"
+                                                    name="salary">
                                             </div>
+                                           
 
                                         </div>
 
